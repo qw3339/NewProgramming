@@ -71,6 +71,7 @@ BOOL CALLBACK DlgProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 
 			}
 		}			
+
 		break;
 		case IDOK: MessageBox(hwnd,"Была нажата кнопка OK","Info", MB_OK | MB_ICONINFORMATION); break;
 			//MB_OK | MB_ICONINFORMATION - | это or
