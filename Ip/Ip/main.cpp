@@ -42,8 +42,19 @@ INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpCmdLine, IN
 //	return 32-zero_bits;
 //}
 
-CHAR* ParseAddress(CHAR sz_addres[],CHAR sz_description, DWORD dw_address)
+CHAR* ParseAddress(CHAR sz_addres[], CONST CHAR sz_description[], DWORD dw_address)
 {
+	sprintf
+	(
+		sz_addres,
+		"%s%i.%i.%i.%i",sz_description,
+		FIRST_IPADDRESS(dw_address),
+		SECOND_IPADDRESS(dw_address),
+		THIRD_IPADDRESS(dw_address),
+		FOURTH_IPADDRESS(dw_address)
+
+	);
+	return sz_addres;
 
 
 }
@@ -167,51 +178,61 @@ BOOL CALLBACK DlgProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 				CHAR sz_network_address[SIZE]{};
 				CHAR sz_droadcast_address[SIZE]{};
 				CHAR sz_nuber_of_hosts[SIZE]{};
+				CHAR sz_start_address[SIZE]="Начальный IP-адрес";
+				CHAR sz_last_address[SIZE]="Последний IP-адрес";
 
 				DWORD dw_address = 0;
 				SendMessage(hIPAddress, IPM_GETADDRESS, 0, (LPARAM)&dw_address);
 				DWORD dw_network_address = dw_address & dw_mask;
 
+				ParseAddress(sz_network_address, "Адрес сети:\t\t\t", dw_network_address);
+				//sprintf
+				//(
+				//	sz_network_address, 
+				//	"Адрес сети:\t\t\t%i.%i.%i.%i",
+				//	FIRST_IPADDRESS(dw_network_address),
+				//	SECOND_IPADDRESS(dw_network_address),
+				//	THIRD_IPADDRESS(dw_network_address),
+				//	FOURTH_IPADDRESS(dw_network_address)
 
-				sprintf
-				(
-					sz_network_address, 
-					"Адрес сети:\t\t\t%i.%i.%i.%i",
-					FIRST_IPADDRESS(dw_network_address),
-					SECOND_IPADDRESS(dw_network_address),
-					THIRD_IPADDRESS(dw_network_address),
-					FOURTH_IPADDRESS(dw_network_address)
-
-				);
+				//);
 				DWORD dw_droadcast_address = ~dw_mask | dw_network_address;
-				sprintf
-				(
-					sz_droadcast_address, 
-					"Широковещательный адрес:\t%i.%i.%i.%i",
-					FIRST_IPADDRESS(dw_droadcast_address),
-					SECOND_IPADDRESS(dw_droadcast_address),
-					THIRD_IPADDRESS(dw_droadcast_address),
-					FOURTH_IPADDRESS(dw_droadcast_address)
+				ParseAddress(sz_droadcast_address, "Широковещательный адрес:\t", dw_droadcast_address);
+				//sprintf
+				//(
+				//	sz_droadcast_address, 
+				//	"Широковещательный адрес:\t%i.%i.%i.%i",
+				//	FIRST_IPADDRESS(dw_droadcast_address),
+				//	SECOND_IPADDRESS(dw_droadcast_address),
+				//	THIRD_IPADDRESS(dw_droadcast_address),
+				//	FOURTH_IPADDRESS(dw_droadcast_address)
 
-				
-				);
+				//
+				//);
 				DWORD dw_nuber_of_hosts = dw_droadcast_address - dw_network_address - 1;
+				ParseAddress(sz_nuber_of_hosts, "Широковещательный адрес:\t", dw_nuber_of_hosts);
+				//sprintf
+				//(
+				//	sz_nuber_of_hosts,
+				//	"Количество узлов:\t\t%u",
+				//	dw_nuber_of_hosts
+
+
+				//);
+				ParseAddress(sz_start_address, "Начальный IP-адрес:\t\t", dw_network_address + 1);
+				ParseAddress(sz_last_address, "Последний IP-адрес:\t\t", dw_droadcast_address - 1);
+
 				sprintf
 				(
-					sz_nuber_of_hosts,
-					"Количество узлов:\t\t%u",
-					dw_nuber_of_hosts
-
-
-				);
-
-				sprintf
-				(
-					sz_info, 
-					"Info:\n%s\n%s\n%s",
+					sz_info,
+					"Info:\n%s\n%s\n%s\n%s\n%s",
 					sz_network_address,
 					sz_droadcast_address,
-					sz_nuber_of_hosts
+					sz_nuber_of_hosts,
+					sz_start_address,
+					sz_last_address
+
+
 				);
 
 
