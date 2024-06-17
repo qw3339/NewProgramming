@@ -20,10 +20,7 @@ namespace TaskManager
             InitializeComponent();
 			SetColumns();
             statusStrip1.Items.Add("");
-            listViewProcesses.SetS
-
-
-
+     
 		}
 
 		private void timer1_Tick(object sender, EventArgs e)
@@ -31,18 +28,27 @@ namespace TaskManager
             LoadProcesses();
 
 		}
+
         void SetColumns()
         {
 
             listViewProcesses.Columns.Add("PID");
             listViewProcesses.Columns.Add("Name");
 
-
 		}
 
         void LoadProcesses()
         {
+
+
+
+
+
             listViewProcesses.Items.Clear();
+
+
+
+
 
             Process[] processes = Process.GetProcesses();
             for (int i = 0; i < processes.Length; i++)
@@ -52,10 +58,11 @@ namespace TaskManager
                 item.SubItems.Add(processes[i].ProcessName);
                 listViewProcesses.Items.Add(item);
 
-
-
-			}
+            }
             statusStrip1.Items[0].Text = ($"Количество процессов: {listViewProcesses.Items.Count}");
+        
+        
+        
         }
 	}
 }
