@@ -32,7 +32,7 @@
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
 			this.tabControl = new System.Windows.Forms.TabControl();
 			this.tabPageProcesses = new System.Windows.Forms.TabPage();
-			this.listViewProcesses = new ListViewSmooth();
+			this.listViewProcesses = new TaskManager.ListViewSmooth();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
 			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
 			this.timer1 = new System.Windows.Forms.Timer(this.components);
@@ -68,7 +68,6 @@
 			// 
 			this.listViewProcesses.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.listViewProcesses.FullRowSelect = true;
-			this.listViewProcesses.GridLines = true;
 			this.listViewProcesses.HideSelection = false;
 			this.listViewProcesses.Location = new System.Drawing.Point(3, 3);
 			this.listViewProcesses.Name = "listViewProcesses";

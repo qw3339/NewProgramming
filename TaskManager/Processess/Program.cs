@@ -1,5 +1,6 @@
-﻿#define SINGLE_PROCESS
+﻿//#define SINGLE_PROCESS
 //#define ALL_PROCESS
+#define PROCESS_DICTIONARY
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -69,20 +70,34 @@ namespace Processess
 				Process[] processes = System.Diagnostics.Process.GetProcesses();
 				for(int i = 0; i < processes.Length; i++)
 				{
-					Console.WriteLine($"{processes[i].Id}\t{processes[i].MainModule.FileName}");
-					//Console.Write($"Name: {processes[i].ProcessName}\t");
-					//Console.Write($"PID: {processes[i].Id}\t");
+					//Console.WriteLine($"{processes[i].Id}\t{processes[i].MainModule.FileName}");
+					Console.Write($"Name: {processes[i].ProcessName}\t");
+					Console.Write($"PID: {processes[i].Id}\t");
 					//Console.Write($"Path: {processes[i].MainModule.FileName}\t");
-					//Console.WriteLine();
+					Console.WriteLine();
 
 				}
 
 		
 #endif
 
+#if PROCESS_DICTIONARY
+			Process[] processe = Process.GetProcesses();
+			//for(int i = 0; i < processe.Length; i++)
+			//{
+
+			//	Console.WriteLine($"{processe[i].Id}\t{processe[i].ProcessName}");
+			//}
+			Dictionary<int, Process>dictionary = processe.ToDictionary(item => item.Id, item => item);
+            foreach (KeyValuePair<int, Process> i in dictionary)
+            {
+				Console.WriteLine($"{i.Key}\t{i.Value.ProcessName}");
+			}
 
 
-		}
+#endif
+
+        }
 
 
 		[DllImport("advapi32.dll", SetLastError = true)]
