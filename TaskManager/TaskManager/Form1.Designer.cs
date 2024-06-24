@@ -32,12 +32,17 @@
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
 			this.tabControl = new System.Windows.Forms.TabControl();
 			this.tabPageProcesses = new System.Windows.Forms.TabPage();
-			this.listViewProcesses = new TaskManager.ListViewSmooth();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
 			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
 			this.timer1 = new System.Windows.Forms.Timer(this.components);
+			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+			this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.runToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.exToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.listViewProcesses = new TaskManager.ListViewSmooth();
 			this.tabControl.SuspendLayout();
 			this.tabPageProcesses.SuspendLayout();
+			this.menuStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// tabControl
@@ -47,10 +52,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.tabControl.Controls.Add(this.tabPageProcesses);
 			this.tabControl.Controls.Add(this.tabPage2);
-			this.tabControl.Location = new System.Drawing.Point(0, -2);
+			this.tabControl.Location = new System.Drawing.Point(0, 32);
 			this.tabControl.Name = "tabControl";
 			this.tabControl.SelectedIndex = 0;
-			this.tabControl.Size = new System.Drawing.Size(800, 427);
+			this.tabControl.Size = new System.Drawing.Size(800, 393);
 			this.tabControl.TabIndex = 0;
 			// 
 			// tabPageProcesses
@@ -59,29 +64,17 @@
 			this.tabPageProcesses.Location = new System.Drawing.Point(4, 22);
 			this.tabPageProcesses.Name = "tabPageProcesses";
 			this.tabPageProcesses.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPageProcesses.Size = new System.Drawing.Size(792, 401);
+			this.tabPageProcesses.Size = new System.Drawing.Size(792, 367);
 			this.tabPageProcesses.TabIndex = 0;
 			this.tabPageProcesses.Text = "Processes";
 			this.tabPageProcesses.UseVisualStyleBackColor = true;
-			// 
-			// listViewProcesses
-			// 
-			this.listViewProcesses.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.listViewProcesses.FullRowSelect = true;
-			this.listViewProcesses.HideSelection = false;
-			this.listViewProcesses.Location = new System.Drawing.Point(3, 3);
-			this.listViewProcesses.Name = "listViewProcesses";
-			this.listViewProcesses.Size = new System.Drawing.Size(786, 395);
-			this.listViewProcesses.TabIndex = 0;
-			this.listViewProcesses.UseCompatibleStateImageBehavior = false;
-			this.listViewProcesses.View = System.Windows.Forms.View.Details;
 			// 
 			// tabPage2
 			// 
 			this.tabPage2.Location = new System.Drawing.Point(4, 22);
 			this.tabPage2.Name = "tabPage2";
 			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage2.Size = new System.Drawing.Size(792, 401);
+			this.tabPage2.Size = new System.Drawing.Size(792, 367);
 			this.tabPage2.TabIndex = 1;
 			this.tabPage2.Text = "tabPage2";
 			this.tabPage2.UseVisualStyleBackColor = true;
@@ -100,18 +93,66 @@
 			this.timer1.Interval = 1000;
 			this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
 			// 
+			// menuStrip1
+			// 
+			this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem});
+			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+			this.menuStrip1.Name = "menuStrip1";
+			this.menuStrip1.Size = new System.Drawing.Size(800, 29);
+			this.menuStrip1.TabIndex = 2;
+			this.menuStrip1.Text = "menuStrip1";
+			// 
+			// fileToolStripMenuItem
+			// 
+			this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.runToolStripMenuItem,
+            this.exToolStripMenuItem});
+			this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+			this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 25);
+			this.fileToolStripMenuItem.Text = "File";
+			// 
+			// runToolStripMenuItem
+			// 
+			this.runToolStripMenuItem.Name = "runToolStripMenuItem";
+			this.runToolStripMenuItem.Size = new System.Drawing.Size(180, 26);
+			this.runToolStripMenuItem.Text = "Run";
+			this.runToolStripMenuItem.Click += new System.EventHandler(this.runToolStripMenuItem_Click);
+			// 
+			// exToolStripMenuItem
+			// 
+			this.exToolStripMenuItem.Name = "exToolStripMenuItem";
+			this.exToolStripMenuItem.Size = new System.Drawing.Size(180, 26);
+			this.exToolStripMenuItem.Text = "Exit";
+			// 
+			// listViewProcesses
+			// 
+			this.listViewProcesses.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.listViewProcesses.FullRowSelect = true;
+			this.listViewProcesses.HideSelection = false;
+			this.listViewProcesses.Location = new System.Drawing.Point(3, 3);
+			this.listViewProcesses.Name = "listViewProcesses";
+			this.listViewProcesses.Size = new System.Drawing.Size(786, 361);
+			this.listViewProcesses.TabIndex = 0;
+			this.listViewProcesses.UseCompatibleStateImageBehavior = false;
+			this.listViewProcesses.View = System.Windows.Forms.View.Details;
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(800, 450);
 			this.Controls.Add(this.statusStrip1);
+			this.Controls.Add(this.menuStrip1);
 			this.Controls.Add(this.tabControl);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+			this.MainMenuStrip = this.menuStrip1;
 			this.Name = "MainForm";
 			this.Text = "Task Manager";
 			this.tabControl.ResumeLayout(false);
 			this.tabPageProcesses.ResumeLayout(false);
+			this.menuStrip1.ResumeLayout(false);
+			this.menuStrip1.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -126,6 +167,10 @@
         private ListViewSmooth listViewProcesses;
 		//private System.Windows.Forms.ListView listViewProcesses;
 		private System.Windows.Forms.Timer timer1;
+		private System.Windows.Forms.MenuStrip menuStrip1;
+		private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem runToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem exToolStripMenuItem;
 	}
 }
 
