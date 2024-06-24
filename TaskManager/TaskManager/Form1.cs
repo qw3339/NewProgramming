@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.Collections;
+using System.IO;
 
 
 namespace TaskManager
@@ -19,26 +20,25 @@ namespace TaskManager
 		readonly int ramFaktor = 1024;
 		readonly string suffix = "kB";
 		Dictionary<int, Process> d_processes;
+        RunWindow cmd;
 
 		public MainForm()
         {
             InitializeComponent();
+			cmd = new RunWindow();
+
 			SetColumns();
             statusStrip1.Items.Add("");
-            LoadProcesses();
-     
+            LoadProcesses();   
 		}
 
 		private void timer1_Tick(object sender, EventArgs e)
 		{
 			//LoadProcesses();		
-			AddNewProcesses();
-			
+			AddNewProcesses();			
 			RemoveOldProcesses(); 
             UpDateExistingProcesses();
-
-			statusStrip1.Items[0].Text = ($"Количество процессов: {listViewProcesses.Items.Count}");
-			
+			statusStrip1.Items[0].Text = ($"Количество процессов: {listViewProcesses.Items.Count}");			
 		}
 
         void SetColumns()
@@ -46,8 +46,7 @@ namespace TaskManager
             listViewProcesses.Columns.Add("PID");
             listViewProcesses.Columns.Add("Name");
 			listViewProcesses.Columns.Add("Working set");
-			listViewProcesses.Columns.Add("Peak working set");
-			
+			listViewProcesses.Columns.Add("Peak working set");			
 		}
 
         void LoadProcesses()
@@ -94,9 +93,7 @@ namespace TaskManager
             {
                 //string item_name = listViewProcesses.Items[i].Name;
                 if (!d_processes.ContainsKey(Convert.ToInt32(listViewProcesses.Items[i].Text)))                
-                    listViewProcesses.Items.RemoveAt(i);
-
-                
+                    listViewProcesses.Items.RemoveAt(i);                
             }
         }
         void UpDateExistingProcesses()
@@ -107,14 +104,11 @@ namespace TaskManager
                 //Process process = d_processes[id];
                 listViewProcesses.Items[i].SubItems[2].Text = $"{d_processes[id].WorkingSet64 / ramFaktor} {suffix}";
 				listViewProcesses.Items[i].SubItems[3].Text = $"{d_processes[id].PeakWorkingSet64 / ramFaktor} {suffix}";
-
 			}
 
         }
 		void AddProcessesToListView(Process process)
         {
-
-
             ListViewItem item = new ListViewItem();
             item.Text = process.Id.ToString();
             item.SubItems.Add(process.ProcessName);
@@ -122,7 +116,6 @@ namespace TaskManager
 			item.SubItems.Add($"{process.PeakWorkingSet64 / ramFaktor} {suffix}");
 			//item.SubItems.Add($"{process.I} ");
 			listViewProcesses.Items.Add(item);
-
 		}
 
         void RemoveProcessesFromListView(int pid)
@@ -132,8 +125,19 @@ namespace TaskManager
 
 		private void runToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-            RunWindow cmd = new RunWindow();
+            //RunWindow cmd = new RunWindow();
             cmd.ShowDialog();
+		}
+
+		private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
+		{
+            StreamWriter sw = new StreamWriter("ProgramList.txt");
+            for(int i =0; i<cmd.ComboBoxFileName.Items.Count; i++)
+            {
+                sw.WriteLine(cmd.ComboBoxFileName.Items[i]);
+            }
+
+            sw.Close();
 		}
 	}
 }
