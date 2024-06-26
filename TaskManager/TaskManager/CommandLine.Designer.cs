@@ -65,6 +65,7 @@
 			this.buttonBrowse.TabIndex = 2;
 			this.buttonBrowse.Text = "Browse";
 			this.buttonBrowse.UseVisualStyleBackColor = true;
+			this.buttonBrowse.Click += new System.EventHandler(this.buttonBrowse_Click);
 			// 
 			// comboBoxFilename
 			// 
@@ -74,7 +75,9 @@
 			this.comboBoxFilename.Name = "comboBoxFilename";
 			this.comboBoxFilename.Size = new System.Drawing.Size(270, 21);
 			this.comboBoxFilename.TabIndex = 3;
+			this.comboBoxFilename.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBoxFilename_KeyDown);
 			this.comboBoxFilename.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBoxFilename_KeyPress);
+			this.comboBoxFilename.KeyUp += new System.Windows.Forms.KeyEventHandler(this.comboBoxFilename_KeyUp);
 			// 
 			// pictureBox
 			// 
@@ -99,6 +102,7 @@
 			this.Controls.Add(this.buttonOk);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+			this.KeyPreview = true;
 			this.Name = "RunWindow";
 			this.Text = "Run";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.RunWindow_FormClosing);

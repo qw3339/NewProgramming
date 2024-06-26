@@ -139,5 +139,12 @@ namespace TaskManager
 
             sw.Close();
 		}
+
+
+
+		private void closeToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			d_processes[Convert.ToInt32(listViewProcesses.SelectedItems[0].Text)].Kill();
+		}
 	}
 }
