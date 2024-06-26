@@ -77,7 +77,6 @@
 			this.comboBoxFilename.TabIndex = 3;
 			this.comboBoxFilename.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBoxFilename_KeyDown);
 			this.comboBoxFilename.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBoxFilename_KeyPress);
-			this.comboBoxFilename.KeyUp += new System.Windows.Forms.KeyEventHandler(this.comboBoxFilename_KeyUp);
 			// 
 			// pictureBox
 			// 
@@ -106,6 +105,7 @@
 			this.Name = "RunWindow";
 			this.Text = "Run";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.RunWindow_FormClosing);
+			this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RunWindow_KeyDown);
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
 			this.ResumeLayout(false);
 

@@ -62,22 +62,15 @@ namespace TaskManager
 				MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				
 			}
-
-			
-
-
 		}
 
 		private void comboBoxFilename_KeyPress(object sender, KeyPressEventArgs e)
 		{
-			if (e.KeyChar == (char)Keys.Enter)
-			{
-				buttonOk_Click(sender, e);
-
-			}
-
-			if (e.KeyChar == (char)Keys.Escape) Close();
-
+			//if (e.KeyChar == (char)Keys.Enter)
+			//{
+			//	buttonOk_Click(sender, e);
+			//}
+			//if (e.KeyChar == (char)Keys.Escape) Close();
 		}
 
 		private void RunWindow_FormClosing(object sender, FormClosingEventArgs e)
@@ -86,10 +79,6 @@ namespace TaskManager
 
 		}
 
-		private void comboBoxFilename_KeyUp(object sender, KeyEventArgs e)
-		{
-			
-		}
 
 		private void comboBoxFilename_KeyDown(object sender, KeyEventArgs e)
 		{
@@ -101,6 +90,11 @@ namespace TaskManager
 
 			//if (e.KeyValue == (char)Keys.Escape) Close();
 		}
+		private void RunWindow_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.KeyValue == (char)Keys.Escape) Close();
+		}
+
 
 		private void buttonBrowse_Click(object sender, EventArgs e)
 		{
@@ -114,15 +108,6 @@ namespace TaskManager
 			}
 		}
 
-		//private void RunWindow_KeyPress(object sender, KeyPressEventArgs e)
-		//{
-		//	if (e.KeyChar == (char)Keys.Enter)
-		//	{
-		//		buttonOk_Click(sender, e);
-
-		//	}
-		//	if(e.KeyChar == (char) Keys.Escape) Close();
-
-		//}
+		
 	}
 }
