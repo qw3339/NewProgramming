@@ -32,7 +32,6 @@
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
 			this.tabControl = new System.Windows.Forms.TabControl();
 			this.tabPageProcesses = new System.Windows.Forms.TabPage();
-			this.listViewProcesses = new TaskManager.ListViewSmooth();
 			this.contextMenuStripProcess = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -42,6 +41,7 @@
 			this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.runToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.exToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.listViewProcesses = new TaskManager.ListViewSmooth();
 			this.tabControl.SuspendLayout();
 			this.tabPageProcesses.SuspendLayout();
 			this.contextMenuStripProcess.SuspendLayout();
@@ -71,19 +71,6 @@
 			this.tabPageProcesses.TabIndex = 0;
 			this.tabPageProcesses.Text = "Processes";
 			this.tabPageProcesses.UseVisualStyleBackColor = true;
-			// 
-			// listViewProcesses
-			// 
-			this.listViewProcesses.ContextMenuStrip = this.contextMenuStripProcess;
-			this.listViewProcesses.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.listViewProcesses.FullRowSelect = true;
-			this.listViewProcesses.HideSelection = false;
-			this.listViewProcesses.Location = new System.Drawing.Point(3, 3);
-			this.listViewProcesses.Name = "listViewProcesses";
-			this.listViewProcesses.Size = new System.Drawing.Size(786, 361);
-			this.listViewProcesses.TabIndex = 0;
-			this.listViewProcesses.UseCompatibleStateImageBehavior = false;
-			this.listViewProcesses.View = System.Windows.Forms.View.Details;
 			// 
 			// contextMenuStripProcess
 			// 
@@ -145,15 +132,29 @@
 			// runToolStripMenuItem
 			// 
 			this.runToolStripMenuItem.Name = "runToolStripMenuItem";
-			this.runToolStripMenuItem.Size = new System.Drawing.Size(180, 26);
+			this.runToolStripMenuItem.Size = new System.Drawing.Size(108, 26);
 			this.runToolStripMenuItem.Text = "Run";
 			this.runToolStripMenuItem.Click += new System.EventHandler(this.runToolStripMenuItem_Click);
 			// 
 			// exToolStripMenuItem
 			// 
 			this.exToolStripMenuItem.Name = "exToolStripMenuItem";
-			this.exToolStripMenuItem.Size = new System.Drawing.Size(180, 26);
+			this.exToolStripMenuItem.Size = new System.Drawing.Size(108, 26);
 			this.exToolStripMenuItem.Text = "Exit";
+			// 
+			// listViewProcesses
+			// 
+			this.listViewProcesses.ContextMenuStrip = this.contextMenuStripProcess;
+			this.listViewProcesses.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.listViewProcesses.FullRowSelect = true;
+			this.listViewProcesses.HideSelection = false;
+			this.listViewProcesses.Location = new System.Drawing.Point(3, 3);
+			this.listViewProcesses.Name = "listViewProcesses";
+			this.listViewProcesses.Size = new System.Drawing.Size(786, 361);
+			this.listViewProcesses.TabIndex = 0;
+			this.listViewProcesses.UseCompatibleStateImageBehavior = false;
+			this.listViewProcesses.View = System.Windows.Forms.View.Details;
+			this.listViewProcesses.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listViewProcesses_ColumnClick);
 			// 
 			// MainForm
 			// 
