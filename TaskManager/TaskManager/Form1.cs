@@ -150,7 +150,41 @@ namespace TaskManager
 
 		private void listViewProcesses_ColumnClick(object sender, ColumnClickEventArgs e)
 		{
-			listViewProcesses.ListViewItemSorter = new Comparer(e.Column);
+			//listViewProcesses.ListViewItemSorter = new Comparer(e.Column);
+			listViewProcesses.ListViewItemSorter = GetListViewSorter(e.Column);
+            listViewProcesses.Sort();
+
+
 		}
+        Comparer GetListViewSorter(int index)
+        {
+			Comparer comparer = (Comparer)listViewProcesses.ListViewItemSorter;
+            if(comparer == null) comparer = new Comparer();
+
+            comparer.Index = index;
+            string columnName = listViewProcesses.Columns[index].Text;
+            switch(columnName)
+            {
+                case "PID":
+					comparer.Type = Comparer.ValueType.Integer;
+                    break;
+				case "Name":
+					comparer.Type = Comparer.ValueType.String;
+					break;
+				case "Working set":
+				case "Peak working set":
+					comparer.Type = Comparer.ValueType.Memory;
+                    break;
+				
+			}
+
+            comparer.Direction = comparer.Direction == SortOrder.Ascending ? SortOrder.Descending : SortOrder.Ascending;    
+            return comparer;
+
+
+
+		}
+
+
 	}
 }
